@@ -6,10 +6,10 @@ import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
-import org.springframework.context.annotation.Bean;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -66,6 +66,12 @@ public class LedzedevCommandlinerunnerApplicationrunnerApplication {
         logger.info("Cargando con ApplicationRunner");
         return x -> {
             logger.info("ApplicationRunner tiene como parámetro un objeto ApplicationArguments");
+
+            logger.info("non option args: "+ Arrays.toString(x.getNonOptionArgs().toArray()) );
+            logger.info("contiene files? "+x.containsOption("files"));
+            logger.info("source args: "+ Arrays.toString(x.getSourceArgs()));
+            logger.info("option values: "+x.getOptionValues("files"));
+            logger.info("option names: "+x.getOptionNames());
 
             Arrays.asList(
                     new EquipoDeFutbol("Monterrey"),
